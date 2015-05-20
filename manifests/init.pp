@@ -35,7 +35,25 @@
 #
 # Copyright 2015 Your name here, unless otherwise noted.
 #
-class foxjava {
+class foxjava (
+  $version      = '7',
+  $type         = 'jdk',
+  $sys_arch     = 'x64',
+){
+  #Set the filename and download url
+  if $version == '7' {
+    $version_detail = '7u80'
+    $build_num      = '-b15'
+  } elsif $version == '8' {
+    $version_detail = '8u45'
+    $build_num      = '-b14'
+  } else {
+    $version_detail = $version
+  }
+  $filename       = "${type}-${version_detail}-linux-${sys_arch}.rpm"
+  $download_url   = "http://download.oracle.com/otn-pub/java/jdk/${version_detail}${build_num}/${filename}"
 
-
+  include foxjava::config
+  include foxjava::download
+  include foxjava::install
 }
