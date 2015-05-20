@@ -44,12 +44,15 @@ class foxjava (
   if $version == '7' {
     $version_detail = '7u80'
     $build_num      = '-b15'
+    $package_name   = 'jdk1.7.0_80'
   } elsif $version == '8' {
     $version_detail = '8u45'
     $build_num      = '-b14'
+    $package_name   = 'jdk1.8.0_45'
   } else {
-    $version_detail = $version
+    fail('java version is not supported')
   }
+  
   $filename       = "${type}-${version_detail}-linux-${sys_arch}.rpm"
   $download_url   = "http://download.oracle.com/otn-pub/java/jdk/${version_detail}${build_num}/${filename}"
 
