@@ -8,6 +8,6 @@ class foxjava::download {
                 \"Cookie: oraclelicense=accept-securebackup-cookie\" 
                 \"${foxjava::downloadurl}\"",
     timeout => 0,
-    onlyif  => "test -e ${foxjava::java_source}/${foxjava::filename}",
+    onlyif  => "test ! -f ${foxjava::java_source}/${foxjava::filename}",
   }
 }
